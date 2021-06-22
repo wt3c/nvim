@@ -193,6 +193,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 " Plug 'nvim-telescope/telescope.nvim' -- require Nvim 0.5
+Plug 'luochen1990/rainbow'
 " --------------------------------------- AutoComplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
@@ -205,6 +206,12 @@ Plug 'davidhalter/jedi-vim'
 Plug 'rafi/awesome-vim-colorschemes'
 
 call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""
+"" Rainbow
+""""""""""""""""""""""""""""""""""""""""
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
 
 """""""""""""""""""""""""""""""""""""""""
 "" Telescope
