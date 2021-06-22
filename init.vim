@@ -197,7 +197,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'luochen1990/rainbow'
 " --------------------------------------- AutoComplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-jedi'
+Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
