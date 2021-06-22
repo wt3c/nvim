@@ -178,9 +178,10 @@ call plug#begin()
 """""""""""""""""""""""""""""""""""""""" IDE
 Plug 'preservim/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
@@ -321,19 +322,42 @@ let g:ale_sign_warning = '⚠'
 """"""""""""""""""""""""""""""""""""""""
 "" NerdTree
 """"""""""""""""""""""""""""""""""""""""
- map <f2> :NERDTreeToggle<CR>
- nnoremap <silent> <F4> :NERDTreeFind<CR>
- nnoremap <silent> <F3> :NERDTreeToggle<CR>
+set encoding=UTF-8
+"nerdtree
+let NERDTreeShowHidden = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeIgnore = []
+let NERDTreeStatusline = ''
 
- "" Abre o NERDTree quando não abrir nenhum arquivo
- autocmd StdinReadPre * let s:std_in=1
- autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"nerdtree-git-plugin
+"g:NERDTreeGitStatusIndicatorMapCustom
+let  g:NERDTreeGitStatusIndicatorMapCustom= {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
- "" Fechar o VIM se a unica janela a esquerda for o NERDTree
- autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+map <f2> :NERDTreeToggle<CR>
+nnoremap <silent> <F4> :NERDTreeFind<CR>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
- "" Ignore files in NERDTree
- let NERDTreeIgnore=['\.pyc$', '\~$']
+"" Abre o NERDTree quando não abrir nenhum arquivo
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"" Fechar o VIM se a unica janela a esquerda for o NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"" Ignore files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$']
 
 
 """"""""""""""""""""""""""""""""""""""""
