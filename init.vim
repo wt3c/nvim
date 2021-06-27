@@ -12,8 +12,12 @@
 """""""""""""""""""""""""""""""
 syntax on
 filetype plugin indent on
+set hidden
+set mouse=a                   " Habilita mouse
 set ruler
 set number                    " Numera as linhas
+set relativenumber
+set inccommand=split
 set linebreak                 " Quebra a linha sem quebrar a palavra
 set wildmode=longest,list     " Completa o comando com TAB igual o bash
 set expandtab                 " Identa com espaços
