@@ -4,9 +4,8 @@
 "" https://dev.to/thespanishguy/neovim-como-ide-42m7
 "" https://jdhao.github.io/2018/12/24/centos_nvim_install_use_guide_en/
 "" https://github.com/rafi/awesome-vim-colorschemes
+"" https://dev.to/edersonferreira/criando-um-ambiente-de-desenvolvimento-com-vim-neovim-42
 
-
-"
 """""""""""""""""""""""""""""""
 "" Configurações básicas
 """""""""""""""""""""""""""""""
@@ -66,14 +65,6 @@ set termguicolors
 colorscheme gruvbox
 set background=dark " use dark mode
 " set background=light " uncomment to use light modv
-
-""""""""""""""""""""""""""""""""""""""""
- "" IndentLine
- """"""""""""""""""""""""""""""""""""""""
- let g:indentLine_enabled = 1
- let g:indentLine_concealcursor = 0
- let g:indentLine_char = '┆'
- let g:indentLine_faster = 1
 
  """"""""""""""""""""""""""""""""""""""""
  "" Permite selecionar com SHIFT + SETA como no Windows
@@ -180,13 +171,15 @@ set background=dark " use dark mode
 """"""""""""""""""""""""""""""""""""""""
 call plug#begin()
 """""""""""""""""""""""""""""""""""""""" IDE
-Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'                                               " Barra de navegação por arquivos e diretórios
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'                          " Conjunto com Devicons
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'                                           " Adicionar ícones para certas linguagens, frameworks e tipos de arquivos
+Plug 'thaerkh/vim-indentguides'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'                                               " Analisador de código assíncrono
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
@@ -218,6 +211,15 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
+""""""""""""""""""""""""""""""""""""""""
+ "" IndentLine
+ """"""""""""""""""""""""""""""""""""""""
+let g:indentLine_enabled = 0
+let g:indentLine_concealcursor = -1
+let g:indentLine_char = '┆'
+let g:indentLine_faster = 0
+let g:indentguides_spacechar = '▏'
+let g:indentguides_tabchar = '▏'
 
 """""""""""""""""""""""""""""""""""""""""
 "" Telescope
@@ -296,7 +298,12 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-
+" Check Python files with flake8 and pylint.
+let b:ale_linters = ['flake8', 'pylint']
+" Fix Python files with autopep8 and yapf.
+let b:ale_fixers = ['autopep8', 'yapf']
+" Disable warnings about trailing whitespace for Python files.
+let b:ale_warn_about_trailing_whitespace = 0
 """""""""""""""""""""""""""""""""""""""
 "" COC
 """""""""""""""""""""""""""""""""""""""
@@ -375,6 +382,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "" Ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']
 
+" ----------------------- Conjunto Devicons
+let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
 """"""""""""""""""""""""""""""""""""""""
 "" vim-airline
