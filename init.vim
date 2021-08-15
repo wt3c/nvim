@@ -64,7 +64,11 @@ Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-
+" --------------------------------------- Debug
+"  https://github.com/puremourning/vimspector#installation
+Plug 'puremourning/vimspector'
+"
+"
 " Plug 'sbdchd/neoformat'
 " Plug 'neomake/neomake'
 
@@ -94,6 +98,10 @@ Plug 'xolox/vim-session'
 "" Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+
+"" Notify
+Plug 'rcarriga/nvim-notify'
 
 "*****************************************************************************
 "" Custom bundles
