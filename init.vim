@@ -36,7 +36,7 @@ call plug#begin(expand('~/./plugged'))
 "*****************************************************************************
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'                          " Conjunto com Devicons
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'                          " Conjunto com Devicons
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'                                           " Adicionar ícones para certas linguagens, frameworks e tipos de arquivos
 Plug 'tpope/vim-commentary'
@@ -219,8 +219,6 @@ let g:session_command_aliases = 1
  set nowritebackup
  set noswapfile
 
-
-
 """""""""""""""""""""""""""""""""""""""""
 "" Refresh Ne NeoVIM
 """""""""""""""""""""""""""""""""""""""""
@@ -303,8 +301,6 @@ set background=dark " use dark mode
  highlight colorcolumn ctermbg=233 " Cor da barra
  set nowrap
  set fo-=t
-
-
 
 set mousemodel=popup
 set t_Co=256
@@ -394,17 +390,6 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
-"" NERDTree configuration
-let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
-let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-nnoremap <silent> <F2> :NERDTreeFind<CR>
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -521,7 +506,7 @@ noremap <Leader>v :<C-u>vsplit<CR>
 "" Git
 noremap <Leader>ga :Gwrite<CR>
 noremap <Leader>gc :Git commit --verbose<CR>
-noremap <Leader>gsh :Gpush<CR>
+noremap <Leader>gsh :Gpugh<CR>
 noremap <Leader>gll :Gpull<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
@@ -580,9 +565,6 @@ if executable('ag')
 endif
 
 
-
-
-
 " ripgrep
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
@@ -590,7 +572,7 @@ if executable('rg')
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+cnoremap <C-P>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
 "Recovery commands from history through FZF
@@ -605,22 +587,26 @@ let g:UltiSnipsEditSplit="vertical"
 """""""""""""""""""""""""""""""""""""""
 ""ALE
 """""""""""""""""""""""""""""""""""""""
-let b:ale_fixers = ['prettier', 'eslint']
+" let b:ale_fixers = ['prettier', 'eslint']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 " Check Python files with flake8 and pylint.
-let b:ale_linters = ['flake8', 'pylint']
+let g:ale_linters= {
+            \'python':['flake8', 'pylint'],
+            \'javascript':['eslint']
+            \}
 " Fix Python files with autopep8 and yapf.
-let b:ale_fixers = ['autopep8', 'yapf']
+" let b:ale_fixers = ['autopep8', 'yapf']
+let b:ale_fixers={
+            \'python':['autopep8','yapf'],
+            \}
 " Disable warnings about trailing whitespace for Python files.
 let b:ale_warn_about_trailing_whitespace = 0
-
-" ale
-let g:ale_linters = {}
-
+nmap <F10> :ALEFix<CR>
+let g:ale_fix_on_save = 1
 
 
 " Tagbar
@@ -642,11 +628,6 @@ noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
 
-if has('macunix')
-  " pbcopy for OSX copy/paste
-  vmap <C-x> :!pbcopy<CR>
-  vmap <C-c> :w !pbcopy<CR><CR>
-endif
 
 "" Buffer nav
 noremap <leader>z :bp<CR>
@@ -674,8 +655,9 @@ vmap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
+
 "" Open current line on GitHub
-nnoremap <Leader>o :.Gbrowse<CR>
+nnoremap <Leader>o :.GBrowse<CR>
 
 "*****************************************************************************
 "" Custom configs
@@ -750,9 +732,6 @@ let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
 
-" ale
-:call extend(g:ale_linters, {
-    \'python': ['flake8'], })
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
@@ -789,10 +768,24 @@ endif
 set encoding=UTF-8
 "nerdtree
 let NERDTreeShowHidden = 1
-let NERDTreeMinimalUI = 1
+" let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeIgnore = []
 let NERDTreeStatusline = ''
+
+"" NERDTree configuration
+" let g:NERDTreeChDirMode=2
+"let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+"let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+"let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeWinSize = 50
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+nnoremap <silent> <F2> :NERDTreeToggle<CR>
+"nnoremap <silent> <F3> :NERDTreeToggle<CR>
+" map <f2> :NERDTreeToggle<CR>
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 "nerdtree-git-plugin
 "g:NERDTreeGitStatusIndicatorMapCustom
@@ -809,9 +802,6 @@ let  g:NERDTreeGitStatusIndicatorMapCustom= {
     \ "Unknown"   : "?"
     \ }
 
-map <f2> :NERDTreeToggle<CR>
-" nnoremap <silent> <F4> :NERDTreeFind<CR>
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 "" Abre o NERDTree quando não abrir nenhum arquivo
 autocmd StdinReadPre * let s:std_in=1
@@ -821,7 +811,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "" Ignore files in NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
+" let NERDTreeIgnore=['\.pyc$', '\~$']
 
 " ----------------------- Conjunto Devicons
 let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
