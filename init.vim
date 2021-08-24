@@ -419,7 +419,7 @@ if !exists('*s:setupWrapping')
   function s:setupWrapping()
     set wrap
     set wm=2
-    set textwidth=79
+    set textwidth=119
   endfunction
 endif
 
@@ -562,12 +562,12 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Using Lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+" nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+" nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
-"""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""let g:ale_python_flake8_options = '--max-line-length=88'
 "" FZF
 """""""""""""""""""""""""""""""""""""""
 nnoremap <c-p> :Files<cr>
@@ -629,6 +629,7 @@ let b:ale_warn_about_trailing_whitespace = 0
 nmap <F10> :ALEFix<CR>
 let g:ale_fix_on_save = 1
 
+let g:ale_python_flake8_options = '--max-line-length=120'
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
