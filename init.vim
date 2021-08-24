@@ -36,26 +36,26 @@ call plug#begin(expand('~/./plugged'))
 "*****************************************************************************
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'                          " Conjunto com Devicons
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'        " Conjunto com Devicons
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'                                           " Adicionar ícones para certas linguagens, frameworks e tipos de arquivos
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
+Plug 'ryanoasis/vim-devicons'                         " Adicionar ícones para certas linguagens, frameworks e tipos de arquivos
+Plug 'tpope/vim-commentary'                           " Ainda bucando um plug melhor para administrar os comentários
+Plug 'tpope/vim-fugitive'                             " Administra GIT
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
-Plug 'Raimondi/delimitMate'
-Plug 'majutsushi/tagbar'
-Plug 'dense-analysis/ale'
-Plug 'Yggdroot/indentLine'
-Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+Plug 'airblade/vim-gitgutter'                         " A Vim plugin which shows a git diff in the sign column. It shows which lines have been added, modified, or removed.
+Plug 'vim-scripts/grep.vim'                           " The grep plugin integrates the grep, fgrep, egrep, and agrep tools with
+" Plug 'vim-scripts/CSApprox'
+Plug 'Raimondi/delimitMate'                           " This plug-in provides automatic closing of quotes, parenthesis, brackets
+Plug 'majutsushi/tagbar'                              " Tagbar is a Vim plugin that provides an easy way to browse the tags of the current file and get an overview of its structure
+Plug 'dense-analysis/ale'                             " Plugin providing linting (syntax checking and semantic errors)
+Plug 'Yggdroot/indentLine'                            " This plugin is used for displaying thin vertical lines at each indentation level for code indented with spaces.
+Plug 'tpope/vim-rhubarb'                              " Required by fugitive to :Gbrowse
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'                            " 'help you read complex code by showing diff level of parentheses in diff color !!'
+
 
 " --------------------------------------- AutoComplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -79,6 +79,10 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 """ One theme to rule them all :P
 Plug 'rafi/awesome-vim-colorschemes'
 
+" --------------------------------------- Find Files
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -89,6 +93,7 @@ let g:make = 'gmake'
 if exists('make')
         let g:make = 'make'
 endif
+
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 
 "" Vim-Session
@@ -545,6 +550,22 @@ let g:neoformat_basic_format_retab = 1
 
 " Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
+
+""""""""""""""""""""""""""""""""""""""
+"" Telescope
+"""""""""""""""""""""""""""""""""""""
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 """""""""""""""""""""""""""""""""""""""
 "" FZF
