@@ -567,7 +567,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 " nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
-"""""""""""""""""""""""""""""""""""""""let g:ale_python_flake8_options = '--max-line-length=88'
+"""""""""""""""""""""""""""""""""""""""'
 "" FZF
 """""""""""""""""""""""""""""""""""""""
 nnoremap <c-p> :Files<cr>
@@ -630,6 +630,9 @@ nmap <F10> :ALEFix<CR>
 let g:ale_fix_on_save = 1
 
 let g:ale_python_flake8_options = '--max-line-length=120'
+let g:ale_python_pylint_options = '--max-line-length=120'
+
+
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -709,7 +712,7 @@ augroup END
 " vim-python
 augroup vimrc-python
   autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=120
       \ formatoptions+=croq softtabstop=4
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
