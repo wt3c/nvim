@@ -267,13 +267,20 @@ set title                     " Exibe nome do arquivo
 let no_buffers_menu=1
 """""""""""""""""""""""""""""""""""""""
 "" COLORSCHEME
+"" https://vimcolorschemes.com/
 """""""""""""""""""""""""""""""""""""""
-"-------------------------------------Gruvbox
-set termguicolors
-colorscheme gruvbox
-set background=dark " use dark mode
-" set background=light " uncomment to use light modv
+"-------------------------------------
+set termguicolors     " enable true colors support
 
+" ---------------------------- Gruvbox
+colorscheme gruvbox
+set background=dark
+" set background=light
+" ---------------------------- Ayu
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
  """"""""""""""""""""""""""""""""""""""""
  "" Permite selecionar com SHIFT + SETA como no Windows
  """"""""""""""""""""""""""""""""""""""""
