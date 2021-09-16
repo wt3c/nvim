@@ -78,7 +78,7 @@ Plug 'puremourning/vimspector'
 Plug 'dracula/vim', { 'as': 'dracula' }
 """ One theme to rule them all :P
 Plug 'rafi/awesome-vim-colorschemes'
-
+Plug 'projekt0n/github-nvim-theme'
 " --------------------------------------- Find Files
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -281,6 +281,18 @@ set background=dark
 " let ayucolor="mirage" " for mirage version of theme
 " let ayucolor="dark"   " for dark version of theme
 " colorscheme ayu
+"
+"https://github.com/projekt0n/github-nvim-theme
+" Example config in VimScript
+let g:github_function_style = "italic"
+let g:github_sidebars = ["qf", "vista_kind", "terminal", "packer"]
+
+" Change the "hint" color to the "orange" color, and make the "error" color bright red
+let g:github_colors = [hint = "orange", error = "#ff0000"]
+
+" Load the colorscheme
+colorscheme github_light_default
+
  """"""""""""""""""""""""""""""""""""""""
  "" Permite selecionar com SHIFT + SETA como no Windows
  """"""""""""""""""""""""""""""""""""""""
