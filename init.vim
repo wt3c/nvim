@@ -275,20 +275,19 @@ set termguicolors     " enable true colors support
 " ---------------------------- Gruvbox
 colorscheme gruvbox
 set background=dark
-" set background=light
+"set background=light
+
 " ---------------------------- Ayu
-" let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-" colorscheme ayu
+let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
 "
 "https://github.com/projekt0n/github-nvim-theme
 " Example config in VimScript
 let g:github_function_style = "italic"
 let g:github_sidebars = ["qf", "vista_kind", "terminal", "packer"]
 
-" Change the "hint" color to the "orange" color, and make the "error" color bright red
-" let g:github_colors = [hint = "orange", error = "#ff0000"]
 
 " Load the colorscheme
 colorscheme github_light_default
@@ -333,11 +332,11 @@ set gfn=Monospace\ 10
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
-    set guifont=Menlo:h12
-    set transparency=7
+   set guifont=Menlo:h12
+   set transparency=7
   endif
 else
-  let g:CSApprox_loaded = 1
+let g:CSApprox_loaded = 1
 
   " IndentLine
   let g:indentLine_enabled = 1
@@ -346,13 +345,13 @@ else
   let g:indentLine_faster = 1
 
 
-  if $COLORTERM == 'gnome-terminal'
-    set term=gnome-256color
+if $COLORTERM == 'gnome-terminal'
+   set term=gnome-256color
   else
     if $TERM == 'xterm'
       set term=xterm-256color
     endif
-  endif
+   endif
 
 endif
 
